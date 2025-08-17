@@ -14,6 +14,35 @@ public class Bot {
         goodbye = "Bye. Hope to see you soon!";
     }
 
+    public void addToDo(String input) {
+        Task newTask = new ToDoTask(input);
+        taskList.add(newTask);
+        printAddTask(newTask);
+    }
+
+    public void addDeadline(String input) {
+        String[] parts = input.split(" /by ", 2);
+        Task newTask = new DeadlineTask(parts[0], parts.length > 1 ? parts[1] : "");
+        taskList.add(newTask);
+        printAddTask(newTask);
+    }
+
+    public void addEvent(String input) {
+        String[] fromSplit = input.split(" /from ", 2);
+        String description = fromSplit[0];
+        String from = "", to = "";
+        if (fromSplit.length > 1) {
+            String[] toSplit = fromSplit[1].split(" /to ", 2);
+            from = toSplit[0];
+            if (toSplit.length > 1) {
+                to = toSplit[1];
+            }
+        }
+        Task newTask = new EventTask(description, from, to);
+        taskList.add(newTask);
+        printAddTask(newTask);
+    }
+
     public void addToList(String input) {
         Task newTask = new Task(input.trim());
         taskList.add(newTask);
@@ -37,6 +66,10 @@ public class Bot {
         return this.horizontalLine + "\n";
     }
 
+    private void printAddTask(Task task) {
+        System.out.println(line() + "Got it. I've added this task:\n  " + task + "\nNow you have " + taskList.size() + " tasks in the list.\n" + line());
+    }
+
     public void markTask(int index) {
         Task task = taskList.get(index - 1);
         task.markAsCompleted();
@@ -56,7 +89,7 @@ public class Bot {
     }
 
     public String listToString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
         int index = 1;
         for (Task task : taskList) {
             sb.append(index)
@@ -65,6 +98,7 @@ public class Bot {
                 .append("\n");
             index++;
         }
+        sb.append(String.format("You have %d tasks in the list.\n", taskList.size()));
         return sb.toString();
     }
 

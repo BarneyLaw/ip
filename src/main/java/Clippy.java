@@ -7,25 +7,41 @@ public class Clippy {
 
         System.out.println(bot.greet());
         while (true) {
-            String userInput = scanner.nextLine();
+            String input = scanner.nextLine().trim();
+            String[] parts = input.split(" ", 2);
+            String command = parts[0].toLowerCase();
 
-            if (userInput.trim().equalsIgnoreCase("bye")) {
-                System.out.println(bot.bye());
-                break;
-            } else if (userInput.trim().equalsIgnoreCase("list")) {
-                System.out.println(bot.line() + bot.listToString() + bot.line());
-            } else if (userInput.trim().startsWith("mark ")){
-                int idx = Integer.parseInt(userInput.trim().substring(5).trim());
-                bot.markTask(idx);
-            } else if (userInput.trim().startsWith("unmark ")) {
-                int idx = Integer.parseInt(userInput.trim().substring(7).trim());
-                bot.unmarkTask(idx);
-            } else {
-
-                bot.addToList(userInput);
-                System.out.println(bot.line() + "Added: " + userInput + "\n" + bot.line());
+            switch (command) {
+                case "bye":
+                    System.out.println(bot.bye());
+                    scanner.close();
+                    return;
+                case "list":
+                    System.out.println(bot.line() + bot.listToString() + bot.line());
+                    break;
+                case "mark":
+                    int idx = Integer.parseInt(parts[1].trim());
+                    bot.markTask(idx);
+                    break;
+                case "unmark":
+                    int index = Integer.parseInt(parts[1].trim());
+                    bot.unmarkTask(index);
+                    break;
+                case "todo":
+                    bot.addToDo(parts.length > 1 ? parts[1].trim() : "");
+                    break;
+                case "deadline":
+                    bot.addDeadline(parts.length > 1 ? parts[1].trim() : "");
+                    break;
+                case "event":
+                    bot.addEvent(parts.length > 1 ? parts[1].trim() : "");
+                    break;
+                default:
+                    bot.addToList(input);
+                    System.out.println(bot.line() + "Added: " + input + "\n" + bot.line());
+                    break;
             }
         }
-        scanner.close();
+
     }
 }
