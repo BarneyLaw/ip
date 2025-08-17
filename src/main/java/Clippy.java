@@ -12,9 +12,12 @@ public class Clippy {
             if (userInput.trim().equalsIgnoreCase("bye")) {
                 System.out.println(bot.bye());
                 break;
+            } else if(userInput.trim().equalsIgnoreCase("list")) {
+                System.out.println(bot.line() + bot.listToString() + bot.line());
             } else {
-                // add more personalized responses here
-                System.out.println(bot.line() + userInput + "\n" + bot.line());
+
+                bot.addToList(userInput);
+                System.out.println(bot.line() + "Added: " + userInput + "\n" + bot.line());
             }
         }
         scanner.close();
