@@ -12,8 +12,14 @@ public class Clippy {
             if (userInput.trim().equalsIgnoreCase("bye")) {
                 System.out.println(bot.bye());
                 break;
-            } else if(userInput.trim().equalsIgnoreCase("list")) {
+            } else if (userInput.trim().equalsIgnoreCase("list")) {
                 System.out.println(bot.line() + bot.listToString() + bot.line());
+            } else if (userInput.trim().startsWith("mark ")){
+                int idx = Integer.parseInt(userInput.trim().substring(5).trim());
+                bot.markTask(idx);
+            } else if (userInput.trim().startsWith("unmark ")) {
+                int idx = Integer.parseInt(userInput.trim().substring(7).trim());
+                bot.unmarkTask(idx);
             } else {
 
                 bot.addToList(userInput);
