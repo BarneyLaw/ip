@@ -11,20 +11,35 @@ public class Bot {
     public Bot() {
         greeting = "Hello, I'm Clippy \n"
                 + "What can I do for you?";
-        goodbye = "Bye. Hope to see you soon!";
+        goodbye = "Bye. Hope to see you again soon!";
     }
 
-    public void addToDo(String input) {
-        Task newTask = new ToDoTask(input);
-        taskList.add(newTask);
-        printAddTask(newTask);
+    public void addToDo(String input) throws ClippyException {
+        if (input == null || input.trim().isEmpty()) {
+            throw new ClippyException("Oops! You need to provide a description for a todo.");
+        }
+        try {
+            Task newTask = new ToDoTask(input);
+            taskList.add(newTask);
+            printAddTask(newTask);
+        } catch (ClippyException e) {
+            System.out.println(horizontalLine);
+            System.out.println(e.getMessage());
+            System.out.println(horizontalLine);
+        }
     }
 
     public void addDeadline(String input) {
         String[] parts = input.split(" /by ", 2);
-        Task newTask = new DeadlineTask(parts[0], parts.length > 1 ? parts[1] : "");
-        taskList.add(newTask);
-        printAddTask(newTask);
+        try {
+            Task newTask = new DeadlineTask(parts[0], parts.length > 1 ? parts[1] : "");
+            taskList.add(newTask);
+            printAddTask(newTask);
+        } catch (ClippyException e) {
+            System.out.println(horizontalLine);
+            System.out.println(e.getMessage());
+            System.out.println(horizontalLine);
+        }
     }
 
     public void addEvent(String input) {
@@ -38,15 +53,15 @@ public class Bot {
                 to = toSplit[1];
             }
         }
-        Task newTask = new EventTask(description, from, to);
-        taskList.add(newTask);
-        printAddTask(newTask);
-    }
-
-    public void addToList(String input) {
-        Task newTask = new Task(input.trim());
-        taskList.add(newTask);
-
+        try {
+            Task newTask = new EventTask(description, from, to);
+            taskList.add(newTask);
+            printAddTask(newTask);
+        } catch (ClippyException e) {
+            System.out.println(horizontalLine);
+            System.out.println(e.getMessage());
+            System.out.println(horizontalLine);
+        }
     }
 
     public String greet() {
@@ -70,7 +85,13 @@ public class Bot {
         System.out.println(line() + "Got it. I've added this task:\n  " + task + "\nNow you have " + taskList.size() + " tasks in the list.\n" + line());
     }
 
-    public void markTask(int index) {
+    public void markTask(int index) throws ClippyException {
+        if (index < 1 || index > taskList.size()) {
+            throw new ClippyException("Please enter a task Number between 1 and " + taskList.size() + ".");
+        }
+        if (taskList.isEmpty()) {
+            throw new ClippyException("You have no tasks in the list to mark.");
+        }
         Task task = taskList.get(index - 1);
         task.markAsCompleted();
         System.out.println(line() + "\n"
@@ -79,7 +100,13 @@ public class Bot {
         );
     }
 
-    public void unmarkTask(int index) {
+    public void unmarkTask(int index) throws ClippyException {
+        if (index < 1 || index > taskList.size()) {
+            throw new ClippyException("Please enter a task Number between 1 and " + taskList.size() + ".");
+        }
+        if (taskList.isEmpty()) {
+            throw new ClippyException("You have no tasks in the list to unmark.");
+        }
         Task task = taskList.get(index - 1);
         task.markAsIncomplete();
         System.out.println(line() + "\n"

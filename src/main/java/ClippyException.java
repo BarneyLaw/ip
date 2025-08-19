@@ -1,4 +1,5 @@
-package PACKAGE_NAME;
-
-public class ClippyException {
+public class ClippyException extends Exception{
+    public ClippyException(String message) {
+        super(message);
+    }
 }
