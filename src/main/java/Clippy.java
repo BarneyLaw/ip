@@ -42,6 +42,9 @@ public class Clippy {
                     case "event":
                         bot.addEvent(parts.length > 1 ? parts[1].trim() : "");
                         break;
+                    case "delete":
+                        bot.deleteTask(parts.length > 1 ? parts[1].trim() : "");
+                        break;
                     default:
                         throw new ClippyException("Sorry, I don't understand that command.");
                 }

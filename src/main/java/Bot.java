@@ -86,11 +86,11 @@ public class Bot {
     }
 
     public void markTask(int index) throws ClippyException {
-        if (index < 1 || index > taskList.size()) {
-            throw new ClippyException("Please enter a task Number between 1 and " + taskList.size() + ".");
-        }
         if (taskList.isEmpty()) {
             throw new ClippyException("You have no tasks in the list to mark.");
+        }
+        if (index < 1 || index > taskList.size()) {
+            throw new ClippyException("Please enter a task Number between 1 and " + taskList.size() + ".");
         }
         Task task = taskList.get(index - 1);
         task.markAsCompleted();
@@ -101,17 +101,34 @@ public class Bot {
     }
 
     public void unmarkTask(int index) throws ClippyException {
-        if (index < 1 || index > taskList.size()) {
-            throw new ClippyException("Please enter a task Number between 1 and " + taskList.size() + ".");
-        }
         if (taskList.isEmpty()) {
             throw new ClippyException("You have no tasks in the list to unmark.");
+        }
+        if (index < 1 || index > taskList.size()) {
+            throw new ClippyException("Please enter a task Number between 1 and " + taskList.size() + ".");
         }
         Task task = taskList.get(index - 1);
         task.markAsIncomplete();
         System.out.println(line() + "\n"
                 + "OK, I've marked this task as not done yet:\n"
                 + task + "\n" + line()
+        );
+    }
+
+    public void deleteTask(String idx) throws ClippyException {
+        int index = idx.isEmpty() ? -1 : Integer.parseInt(idx.trim());
+        if (taskList.isEmpty()) {
+            throw new ClippyException("You have no tasks in the list to delete.");
+        }
+        if (index < 1 || index > taskList.size()) {
+            throw new ClippyException("Please enter a task Number between 1 and " + taskList.size() + ".");
+        }
+        Task task = taskList.remove(index - 1);
+        System.out.println(line() + "\n"
+                + "Noted. I've removed this task:\n"
+                + task
+                + "\nNow you have " + taskList.size() + " tasks in the list.\n"
+                + line()
         );
     }
 
