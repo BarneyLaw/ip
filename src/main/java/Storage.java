@@ -58,15 +58,21 @@ public class Storage {
         switch (type) {
             case "T":
                 Task todo = new ToDoTask(parts[2]);
-                if (isDone) todo.markAsCompleted();
+                if (isDone) {
+                    todo.markAsCompleted();
+                }
                 return todo;
             case "D":
                 Task deadline = new DeadlineTask(parts[2], parts[3]);
-                if (isDone) deadline.markAsCompleted();
+                if (isDone) {
+                    deadline.markAsCompleted();
+                }
                 return deadline;
             case "E":
                 Task event = new EventTask(parts[2], parts[3], parts[4]);
-                if (isDone) event.markAsCompleted();
+                if (isDone) {
+                    event.markAsCompleted();
+                }
                 return event;
             default:
                 throw new ClippyException("Unknown task type in file.");
@@ -89,9 +95,11 @@ public class Storage {
         if (task instanceof ToDoTask) {
             return "T | " + status + " | " + task.getDescription();
         } else if (task instanceof DeadlineTask) {
-            return "D | " + status + " | " + task.getDescription() + " | " + ((DeadlineTask) task).getBy();
+            return "D | " + status + " | " + task.getDescription() + " | "
+                    + ((DeadlineTask) task).getBy().toStorageString();
         } else if (task instanceof EventTask) {
-            return "E | " + status + " | " + task.getDescription() + " | " + ((EventTask) task).getFrom() + " | " + ((EventTask) task).getTo();
+            return "E | " + status + " | " + task.getDescription() + " | "
+                    + ((EventTask) task).getFrom() + " | " + ((EventTask) task).getTo();
         }
         return "";
     }
