@@ -1,0 +1,3 @@
+T | 0 | this
+D | 0 | nothing | tomorrow
+E | 0 | this and that | today | tomorrow
