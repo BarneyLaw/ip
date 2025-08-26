@@ -1,12 +1,12 @@
 public class DeadlineTask extends Task {
-    private String by;
+    private DateTime by;
 
     public DeadlineTask(String description, String by) throws ClippyException {
         super(validateDescription(description));
         if (by == null || by.trim().isEmpty()) {
             throw new ClippyException("A deadline must have a set deadline(use '/by <deadline time'>).");
         }
-        this.by = by;
+        this.by = new DateTime(by);
     }
 
     private static String validateDescription(String description) throws ClippyException {
@@ -16,7 +16,7 @@ public class DeadlineTask extends Task {
         return description;
     }
 
-    public String getBy() {
+    public DateTime getBy() {
         return by;
     }
 
