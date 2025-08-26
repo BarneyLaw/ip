@@ -4,11 +4,14 @@ import java.util.List;
 public class Bot {
     private final String botName = "Clippy";
     private List<Task> taskList = new ArrayList<>();
+    private Storage storage;
     private String greeting;
     private String goodbye;
     private String horizontalLine = "______________________________________________________________________________";
 
     public Bot() {
+        this.storage = new Storage();
+        this.taskList = storage.load();
         greeting = "Hello, I'm Clippy \n"
                 + "What can I do for you?";
         goodbye = "Bye. Hope to see you again soon!";
@@ -22,6 +25,7 @@ public class Bot {
             Task newTask = new ToDoTask(input);
             taskList.add(newTask);
             printAddTask(newTask);
+            storage.save(taskList);
         } catch (ClippyException e) {
             System.out.println(horizontalLine);
             System.out.println(e.getMessage());
@@ -35,6 +39,7 @@ public class Bot {
             Task newTask = new DeadlineTask(parts[0], parts.length > 1 ? parts[1] : "");
             taskList.add(newTask);
             printAddTask(newTask);
+            storage.save(taskList);
         } catch (ClippyException e) {
             System.out.println(horizontalLine);
             System.out.println(e.getMessage());
@@ -57,6 +62,7 @@ public class Bot {
             Task newTask = new EventTask(description, from, to);
             taskList.add(newTask);
             printAddTask(newTask);
+            storage.save(taskList);
         } catch (ClippyException e) {
             System.out.println(horizontalLine);
             System.out.println(e.getMessage());
@@ -94,6 +100,7 @@ public class Bot {
         }
         Task task = taskList.get(index - 1);
         task.markAsCompleted();
+        storage.save(taskList);
         System.out.println(line() + "\n"
                 + "Nice! I've marked this task as done:\n"
                 + task + "\n" + line()
@@ -109,6 +116,7 @@ public class Bot {
         }
         Task task = taskList.get(index - 1);
         task.markAsIncomplete();
+        storage.save(taskList);
         System.out.println(line() + "\n"
                 + "OK, I've marked this task as not done yet:\n"
                 + task + "\n" + line()
@@ -124,6 +132,7 @@ public class Bot {
             throw new ClippyException("Please enter a task Number between 1 and " + taskList.size() + ".");
         }
         Task task = taskList.remove(index - 1);
+        storage.save(taskList);
         System.out.println(line() + "\n"
                 + "Noted. I've removed this task:\n"
                 + task
