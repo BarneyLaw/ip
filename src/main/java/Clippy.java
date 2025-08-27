@@ -1,6 +1,22 @@
 import java.util.Scanner;
+import java.util.List;
 
 public class Clippy {
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+
+    public Clippy() {
+        this.ui = new Ui();
+        this.storage = new Storage();
+        List<Task> loadedTasks = storage.load();
+        this.tasks = new TaskList(loadedTasks);
+    }
+
+    public void run() {
+
+    }
+
     public static void main(String[] args) {
         Bot bot = new Bot();
         Scanner scanner = new Scanner(System.in);

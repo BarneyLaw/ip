@@ -1,22 +1,25 @@
+import java.util.Scanner;
+
 public class Ui {
-    private final String horizontalLine = "___________________________________________________________________________";
-    private String logo = "⠀⠀⠀⠀⠀⠀  ⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠟⠛⠛⠻⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣾⣧⡀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⠀⠛⠋⠰⡟⠉⠁⠀⠀⠀⣾⣯⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⡀⢰⣶⣶⣌⢳⡀⠀⠀⠀⠛⠿⣿⡿⣖⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⠳⣜⣻⢿⣋⡾⠃⢰⠃⣴⣶⣶⡄⢻⣿⡾⡿⠿⠿⠿⠿⠶⠒⣳⠋⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢹⣿⠉⠀⣰⣿⣦⣙⣛⣛⣵⡾⠯⠭⠭⠭⠭⠭⠭⠉⢙⡇⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⢠⣾⡛⠻⡿⣿⡿⠭⣽⡉⠭⠭⠭⠭⠭⠉⣉⠀⣸⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⢸⡟⣒⣸⠃⣿⠯⣽⡿⠭⠍⠉⠑⠒⠒⠐⠒⠀⡞⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⢸⡇⠐⠃⠥⣿⠨⡏⣏⣁⣀⣒⡒⠀⠀⠀⠀⠠⡇⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⠀⣠⣻⡟⣾⣷⠡⠀⢈⣿⣕⣧⣗⡒⠀⠀⠤⠀⠠⠤⠀⣸⠃⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⢀⡴⠧⠭⣷⡏⢿⡷⠒⣿⣽⠿⣧⡧⠭⠯⠉⠉⣛⠒⠒⠂⡜⠀⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⢀⡴⠯⢍⣉⡐⣻⣷⠢⠽⠿⠯⠍⣉⣿⣗⠒⠀⠠⠀⠤⠤⢁⣹⠃⠀⠀⠀⠀⠀\n" +
-            "        ⠀⠀⢀⣴⣋⡓⠒⠂⠀⠄⢸⣿⣌⣓⠐⠒⠠⢤⣿⠇⣉⣉⡈⠒⠒⠂⢤⠃⠀⠀⠀⠀⠀⠀\n" +
-            "        ⠠⢶⣣⣤⠤⢉⢀⡀⠐⠀⠂⠘⣿⡯⣍⣩⣴⣾⠟⠢⠤⠤⢌⣉⣉⣱⠃⠀⠀⠀⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠉⠉⠒⠒⠬⠭⠤⣒⣬⡭⠿⢛⣉⣁⠀⠒⠒⠠⠤⢄⠜⠁⠀⠀⠀⠀⠀⠀⠀⠀\n" +
-            "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠑⠒⠂⠭⠭⣒⣒⡴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
+    private static final String horizontalLine = "____________________________________________________________________";
+    private final Scanner scanner = new Scanner(System.in);
+    private final String logo = "⠀⠀⠀⠀⠀⠀    ⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠟⠛⠛⠻⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣾⣧⡀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⠀⠛⠋⠰⡟⠉⠁⠀⠀⠀⣾⣯⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⡀⢰⣶⣶⣌⢳⡀⠀⠀⠀⠛⠿⣿⡿⣖⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⠳⣜⣻⢿⣋⡾⠃⢰⠃⣴⣶⣶⡄⢻⣿⡾⡿⠿⠿⠿⠿⠶⠒⣳⠋⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⠀⠈⢹⣿⠉⠀⣰⣿⣦⣙⣛⣛⣵⡾⠯⠭⠭⠭⠭⠭⠭⠉⢙⡇⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⢠⣾⡛⠻⡿⣿⡿⠭⣽⡉⠭⠭⠭⠭⠭⠉⣉⠀⣸⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⢸⡟⣒⣸⠃⣿⠯⣽⡿⠭⠍⠉⠑⠒⠒⠐⠒⠀⡞⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⢸⡇⠐⠃⠥⣿⠨⡏⣏⣁⣀⣒⡒⠀⠀⠀⠀⠠⡇⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⠀⣠⣻⡟⣾⣷⠡⠀⢈⣿⣕⣧⣗⡒⠀⠀⠤⠀⠠⠤⠀⣸⠃⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⢀⡴⠧⠭⣷⡏⢿⡷⠒⣿⣽⠿⣧⡧⠭⠯⠉⠉⣛⠒⠒⠂⡜⠀⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⢀⡴⠯⢍⣉⡐⣻⣷⠢⠽⠿⠯⠍⣉⣿⣗⠒⠀⠠⠀⠤⠤⢁⣹⠃⠀⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⢀⣴⣋⡓⠒⠂⠀⠄⢸⣿⣌⣓⠐⠒⠠⢤⣿⠇⣉⣉⡈⠒⠒⠂⢤⠃⠀⠀⠀⠀⠀⠀\n" +
+                    "        ⠠⢶⣣⣤⠤⢉⢀⡀⠐⠀⠂⠘⣿⡯⣍⣩⣴⣾⠟⠢⠤⠤⢌⣉⣉⣱⠃⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠉⠉⠒⠒⠬⠭⠤⣒⣬⡭⠿⢛⣉⣁⠀⠒⠒⠠⠤⢄⠜⠁⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+                    "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠉⠑⠒⠂⠭⠭⣒⣒⡴⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
 
     public Ui() {
     }
@@ -31,12 +34,34 @@ public class Ui {
         return wrapWithLines(message);
     }
 
-    public String wrapWithLines(String message) {
+    public String readCommand() {
+        return scanner.nextLine().trim();
+    }
+
+    public void showAdded(Task task, int total) {
+        System.out.println("Got it. I've added this task:\n  " + task
+                + "\nNow you have " + total + " tasks in the list.");
+    }
+
+    public void showDeleted(Task task, int total) {
+        System.out.println("Noted. I've removed this task:\n" + task
+                + "\nNow you have " + total + " tasks in the list.");
+    }
+
+    public void showMarked(Task task) {
+        System.out.println("\nNice! I've marked this task as done:\n" + task);
+    }
+
+    public void showUnmarked(Task task) {
+        System.out.println("\nOK, I've marked this task as not done yet:\n" + task);
+    }
+
+    public static String wrapWithLines(String message) {
         return horizontalLine + "\n" + message + "\n" + horizontalLine;
     }
 
-    public String showLine() {
-        return horizontalLine;
+    public void showLine() {
+        System.out.println(horizontalLine);
     }
 
 }
