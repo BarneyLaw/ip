@@ -76,6 +76,16 @@ public class TaskList {
         return tasks;
     }
 
+    public List<Task> findTasks(String keyword) {
+        List<Task> result = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(keyword)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");

@@ -1,15 +1,7 @@
 package clippy.parser;
 
 import clippy.ClippyException;
-import clippy.command.AddDeadlineCommand;
-import clippy.command.AddEventCommand;
-import clippy.command.AddTodoCommand;
-import clippy.command.Command;
-import clippy.command.DeleteCommand;
-import clippy.command.ExitCommand;
-import clippy.command.ListCommand;
-import clippy.command.MarkCommand;
-import clippy.command.UnmarkCommand;
+import clippy.command.*;
 
 public class Parser {
     /**
@@ -44,6 +36,8 @@ public class Parser {
             return new UnmarkCommand(parseIndex(arg));
         case "delete":
             return new DeleteCommand(parseIndex(arg));
+        case "find":
+            return new FindCommand(arg);
         default:
             throw new ClippyException("Sorry, I don't understand that command.");
         }
