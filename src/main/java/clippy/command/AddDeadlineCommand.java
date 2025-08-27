@@ -10,6 +10,11 @@ import clippy.ui.Ui;
 public class AddDeadlineCommand extends Command {
     private final String payload;
 
+    /**
+     * Constructs an AddDeadlineCommand with the specified payload.
+     *
+     * @param payload The payload containing the deadline description and due date.
+     */
     public AddDeadlineCommand(String payload) {
         this.payload = payload == null ? "" : payload.trim();
     }

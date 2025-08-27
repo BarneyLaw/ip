@@ -5,6 +5,13 @@ import clippy.ClippyException;
 public class DeadlineTask extends Task {
     private DateTime by;
 
+    /**
+     * Constructs a DeadlineTask with the given description and deadline.
+     *
+     * @param description The description of the deadline task.
+     * @param by          The deadline time of the task.
+     * @throws ClippyException If the description is null or empty, or if by is null or empty.
+     */
     public DeadlineTask(String description, String by) throws ClippyException {
         super(validateDescription(description));
         if (by == null || by.trim().isEmpty()) {
@@ -13,6 +20,13 @@ public class DeadlineTask extends Task {
         this.by = new DateTime(by);
     }
 
+    /**
+     * Validates the description of the deadline task.
+     *
+     * @param description The description to validate.
+     * @return The validated description.
+     * @throws ClippyException If the description is null or empty.
+     */
     private static String validateDescription(String description) throws ClippyException {
         if (description == null || description.trim().isEmpty()) {
             throw new ClippyException("A deadline task must have a description.");

@@ -9,6 +9,11 @@ import clippy.ui.Ui;
 public class UnmarkCommand extends Command {
     private final int indexZeroBased;
 
+    /**
+     * Constructs a MarkCommand with the specified 1-based index.
+     *
+     * @param indexOneBased The 1-based index of the task to be marked as completed.
+     */
     public UnmarkCommand(int indexOneBased) {
         this.indexZeroBased = indexOneBased - 1;
     }
