@@ -6,7 +6,8 @@ import clippy.task.Task;
 import clippy.task.TaskList;
 
 public class Ui {
-    private static final String horizontalLine = "____________________________________________________________________";
+    private static final String horizontalLine =
+            "____________________________________________________________________";
     private final Scanner scanner = new Scanner(System.in);
     private final String logo =
     "         __                        \n" +
@@ -22,7 +23,8 @@ public class Ui {
     }
 
     public void welcome() {
-        String message =  "Hello from clippy.Clippy\n" + this.logo + "\nWhat can I do for you?";
+        String message =  "Hello from clippy.Clippy\n"
+                + this.logo + "\nWhat can I do for you?";
         System.out.println(wrapWithLines(message));
     }
 
