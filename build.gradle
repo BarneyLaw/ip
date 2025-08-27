@@ -31,6 +31,10 @@ application {
     mainClass.set("clippy.Clippy")
 }
 
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 shadowJar {
     archiveBaseName = "clippy"
     archiveClassifier = null
