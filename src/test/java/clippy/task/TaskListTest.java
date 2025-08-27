@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskListTest {
     @Test
-    void addTask_increasesSize() {
+    void addTaskIncreaseSize() {
         TaskList list = new TaskList();
         int initialSize = list.size();
         list.add(new Task("write code"));
@@ -14,7 +14,7 @@ public class TaskListTest {
     }
 
     @Test
-    void getTask_returnsCorrectTask() {
+    void getTaskReturnsCorrectTask() {
         TaskList list = new TaskList();
         Task task = new Task("write code");
         list.add(task);

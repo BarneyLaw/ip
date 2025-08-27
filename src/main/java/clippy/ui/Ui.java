@@ -6,7 +6,8 @@ import clippy.task.Task;
 import clippy.task.TaskList;
 
 public class Ui {
-    private static final String horizontalLine = "____________________________________________________________________";
+    private static final String horizontalLine =
+            "____________________________________________________________________";
     private final Scanner scanner = new Scanner(System.in);
     private final String logo =
     "         __                        \n" +
@@ -25,7 +26,8 @@ public class Ui {
      * Displays the welcome message to the user.
      */
     public void welcome() {
-        String message =  "Hello from Clippy\n" + this.logo + "\nWhat can I do for you?";
+        String message =  "Hello from Clippy\n"
+                + this.logo + "\nWhat can I do for you?";
         System.out.println(wrapWithLines(message));
     }
 
@@ -37,11 +39,6 @@ public class Ui {
         System.out.println(wrapWithLines(message));
     }
 
-    /**
-     * Reads a command from the user input.
-     *
-     * @return The command entered by the user as a String.
-     */
     public String readCommand() {
         return scanner.nextLine().trim();
     }
@@ -99,19 +96,10 @@ public class Ui {
         System.out.println(wrapWithLines(message));
     }
 
-    /**
-     * Wraps the given message with horizontal lines above and below it.
-     *
-     * @param message The message to be wrapped.
-     * @return The formatted message with horizontal lines.
-     */
     public static String wrapWithLines(String message) {
         return horizontalLine + "\n" + message + "\n" + horizontalLine;
     }
 
-    /**
-     * Prints a horizontal line.
-     */
     public void showLine() {
         System.out.println(horizontalLine);
     }
