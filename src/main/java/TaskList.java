@@ -43,8 +43,8 @@ public class TaskList {
                     .append("\n");
             index++;
         }
-        sb.append(String.format("You have %d tasks in the list.\n", tasks.size()));
-        return sb.toString();
+        sb.append(String.format("You have %d tasks in the list.", tasks.size()));
+        return Ui.wrapWithLines(sb.toString());
     }
 
 }

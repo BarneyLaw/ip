@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class Ui {
     private static final String horizontalLine = "____________________________________________________________________";
     private final Scanner scanner = new Scanner(System.in);
-    private final String logo = "⠀⠀⠀⠀⠀⠀    ⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
+    private final String logo =
+                    "⠀⠀⠀⠀⠀⠀                ⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                     "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⠟⠛⠛⠻⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                     "        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣤⣾⣧⡀⠀⠀⠀⢸⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
                     "        ⠀⠀⠀⠀⠀⠀⠀⠀⠛⠋⠰⡟⠉⠁⠀⠀⠀⣾⣯⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\n" +
@@ -24,36 +25,44 @@ public class Ui {
     public Ui() {
     }
 
-    public String welcome() {
+    public void welcome() {
         String message =  "Hello from Clippy\n" + this.logo + "\nWhat can I do for you?";
-        return wrapWithLines(message);
+        System.out.println(wrapWithLines(message));
     }
 
-    public String goodbye() {
+    public void goodbye() {
         String message = "Bye. Hope to see you again soon!";
-        return wrapWithLines(message);
+        System.out.println(wrapWithLines(message));
     }
 
     public String readCommand() {
         return scanner.nextLine().trim();
     }
 
+    public void showError(String message) {
+        System.out.println(wrapWithLines(message));
+    }
+
     public void showAdded(Task task, int total) {
-        System.out.println("Got it. I've added this task:\n  " + task
-                + "\nNow you have " + total + " tasks in the list.");
+        String message = "Got it. I've added this task:\n  " + task
+                + "\nNow you have " + total + " tasks in the list.";
+        System.out.println(wrapWithLines(message));
     }
 
     public void showDeleted(Task task, int total) {
-        System.out.println("Noted. I've removed this task:\n" + task
-                + "\nNow you have " + total + " tasks in the list.");
+        String message = "Noted. I've removed this task:\n" + task
+                + "\nNow you have " + total + " tasks in the list.";
+        System.out.println(wrapWithLines(message));
     }
 
     public void showMarked(Task task) {
-        System.out.println("\nNice! I've marked this task as done:\n" + task);
+        String message = "Nice! I've marked this task as done:\n" + task;
+        System.out.println(wrapWithLines(message));
     }
 
     public void showUnmarked(Task task) {
-        System.out.println("\nOK, I've marked this task as not done yet:\n" + task);
+        String message = "OK, I've marked this task as not done yet:\n" + task;
+        System.out.println(wrapWithLines(message));
     }
 
     public static String wrapWithLines(String message) {

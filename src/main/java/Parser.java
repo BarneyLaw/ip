@@ -1,21 +1,46 @@
 public class Parser {
+    public static Command parse(String input) throws ClippyException {
+        if (input == null || input.trim().isEmpty()) {
+            throw new ClippyException("Input cannot be empty. Please enter a command.");
+        }
+        String[] parts = input.trim().split(" ", 2);
+        String cmd = parts[0].toLowerCase();
+        String arg = parts.length > 1 ? parts[1] : "";
 
-    public Parser() {
+        switch (cmd) {
+        case "bye":
+            return new ExitCommand();
+        case "list":
+            return new ListCommand();
+        case "todo":
+            return new AddTodoCommand(arg);
+        case "deadline":
+            return new AddDeadlineCommand(arg);
+        case "event":
+            return new AddEventCommand(arg);
+        case "mark":
+            return new MarkCommand(parseIndex(arg));
+        case "unmark":
+            return new UnmarkCommand(parseIndex(arg));
+        case "delete":
+            return new DeleteCommand(parseIndex(arg));
+        default:
+            throw new ClippyException("Sorry, I don't understand that command.");
+        }
     }
 
-    public static int parseIndex(String input, int listSize) throws ClippyException {
-        String[] parts = input.split(" ");
-        if (parts.length < 2) {
+    private static int parseIndex(String arg) throws ClippyException {
+        if (arg == null || arg.trim().isEmpty()) {
             throw new ClippyException("☹ OOPS!!! The index of a task cannot be empty.");
         }
         try {
-            int index = Integer.parseInt(parts[1]) - 1;
-            if (index < 0 || index >= listSize) {
-                throw new ClippyException("☹ OOPS!!! The task index is out of bounds.");
+            int idx = Integer.parseInt(arg.trim());
+            if (idx < 1) {
+                throw new NumberFormatException();
             }
-            return index;
+            return idx;
         } catch (NumberFormatException e) {
-            throw new ClippyException("☹ OOPS!!! The task index must be a valid integer.");
+            throw new ClippyException("☹ OOPS!!! The task index must be a valid positive integer.");
         }
     }
 }
