@@ -1,3 +1,7 @@
+package clippy.task;
+
+import clippy.ClippyException;
+
 public class DeadlineTask extends Task {
     private DateTime by;
 

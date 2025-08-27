@@ -1,3 +1,12 @@
+package clippy.command;
+
+import clippy.ClippyException;
+import clippy.storage.Storage;
+import clippy.task.DeadlineTask;
+import clippy.task.Task;
+import clippy.task.TaskList;
+import clippy.ui.Ui;
+
 public class AddDeadlineCommand extends Command {
     private final String payload;
 

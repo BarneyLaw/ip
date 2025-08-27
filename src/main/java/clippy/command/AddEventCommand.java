@@ -1,4 +1,13 @@
-public class AddEventCommand extends Command{
+package clippy.command;
+
+import clippy.ClippyException;
+import clippy.storage.Storage;
+import clippy.task.EventTask;
+import clippy.task.Task;
+import clippy.task.TaskList;
+import clippy.ui.Ui;
+
+public class AddEventCommand extends Command {
     private final String payload;
 
     public AddEventCommand(String payload) {

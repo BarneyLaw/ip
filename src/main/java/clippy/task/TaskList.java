@@ -1,5 +1,11 @@
+package clippy.task;
+
+import clippy.ui.Ui;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import clippy.ClippyException;
 
 public class TaskList {
     private final List<Task> tasks;

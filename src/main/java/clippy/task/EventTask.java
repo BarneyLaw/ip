@@ -1,3 +1,7 @@
+package clippy.task;
+
+import clippy.ClippyException;
+
 public class EventTask extends Task {
     private String from;
     private String to;

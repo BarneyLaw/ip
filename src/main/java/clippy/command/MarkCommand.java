@@ -1,3 +1,11 @@
+package clippy.command;
+
+import clippy.ClippyException;
+import clippy.storage.Storage;
+import clippy.task.Task;
+import clippy.task.TaskList;
+import clippy.ui.Ui;
+
 public class MarkCommand extends Command {
     private final int indexZeroBased;
 

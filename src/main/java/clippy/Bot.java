@@ -1,8 +1,16 @@
+package clippy;
+
+import clippy.storage.Storage;
+import clippy.task.DeadlineTask;
+import clippy.task.EventTask;
+import clippy.task.Task;
+import clippy.task.ToDoTask;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bot {
-    private final String botName = "Clippy";
+    private final String botName = "clippy.Clippy";
     private List<Task> taskList = new ArrayList<>();
     private Storage storage;
     private String greeting;
@@ -12,7 +20,7 @@ public class Bot {
     public Bot() {
         this.storage = new Storage();
         this.taskList = storage.load();
-        greeting = "Hello, I'm Clippy \n"
+        greeting = "Hello, I'm clippy.Clippy \n"
                 + "What can I do for you?";
         goodbye = "Bye. Hope to see you again soon!";
     }

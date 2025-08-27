@@ -1,3 +1,12 @@
+package clippy;
+
+import clippy.command.Command;
+import clippy.parser.Parser;
+import clippy.storage.Storage;
+import clippy.task.Task;
+import clippy.task.TaskList;
+import clippy.ui.Ui;
+
 import java.util.List;
 
 public class Clippy {

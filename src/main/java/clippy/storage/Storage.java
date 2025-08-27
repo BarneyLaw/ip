@@ -1,13 +1,19 @@
+package clippy.storage;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.Path;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import clippy.ClippyException;
+import clippy.task.DeadlineTask;
+import clippy.task.EventTask;
+import clippy.task.Task;
+import clippy.task.ToDoTask;
 
 public class Storage {
     private static final String DIR = "data";

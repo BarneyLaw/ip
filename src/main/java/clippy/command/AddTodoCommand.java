@@ -1,3 +1,12 @@
+package clippy.command;
+
+import clippy.ClippyException;
+import clippy.storage.Storage;
+import clippy.task.Task;
+import clippy.task.TaskList;
+import clippy.task.ToDoTask;
+import clippy.ui.Ui;
+
 public class AddTodoCommand extends Command {
     private final String description;
 

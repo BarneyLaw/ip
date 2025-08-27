@@ -1,4 +1,9 @@
+package clippy.ui;
+
 import java.util.Scanner;
+
+import clippy.task.Task;
+import clippy.task.TaskList;
 
 public class Ui {
     private static final String horizontalLine = "____________________________________________________________________";
@@ -26,7 +31,7 @@ public class Ui {
     }
 
     public void welcome() {
-        String message =  "Hello from Clippy\n" + this.logo + "\nWhat can I do for you?";
+        String message =  "Hello from clippy.Clippy\n" + this.logo + "\nWhat can I do for you?";
         System.out.println(wrapWithLines(message));
     }
 

@@ -1,3 +1,7 @@
+package clippy.task;
+
+import clippy.ClippyException;
+
 public class ToDoTask extends Task {
     public ToDoTask(String description) throws ClippyException {
         super(validateDescription(description));
