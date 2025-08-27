@@ -9,6 +9,11 @@ import clippy.ui.Ui;
 public class DeleteCommand extends Command {
     private final int indexZeroBased;
 
+    /**
+     * Constructs a DeleteCommand with the specified 1-based index.
+     *
+     * @param indexOneBased The 1-based index of the task to be deleted.
+     */
     public DeleteCommand(int indexOneBased) {
         this.indexZeroBased = indexOneBased - 1;
     }

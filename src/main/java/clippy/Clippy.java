@@ -14,6 +14,9 @@ public class Clippy {
     private final TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Constructs a Clippy application instance, initializing the UI, storage, and task list.
+     */
     public Clippy() {
         this.ui = new Ui();
         this.storage = new Storage();
@@ -21,6 +24,9 @@ public class Clippy {
         this.tasks = new TaskList(loaded);
     }
 
+    /**
+     * Starts the Clippy application, displaying the welcome message and entering the command loop.
+     */
     public void run() {
         ui.welcome();
         boolean isExit = false;

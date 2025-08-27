@@ -12,6 +12,13 @@ import clippy.command.MarkCommand;
 import clippy.command.UnmarkCommand;
 
 public class Parser {
+    /**
+     * Parses the user input and returns the corresponding Command object.
+     *
+     * @param input The user input string.
+     * @return The Command object corresponding to the user input.
+     * @throws ClippyException If the input is invalid or cannot be parsed.
+     */
     public static Command parse(String input) throws ClippyException {
         if (input == null || input.trim().isEmpty()) {
             throw new ClippyException("Input cannot be empty. Please enter a command.");
@@ -42,6 +49,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the index from the argument string.
+     *
+     * @param arg The argument string containing the index.
+     * @return The parsed index as an integer.
+     * @throws ClippyException If the index is invalid or cannot be parsed.
+     */
     private static int parseIndex(String arg) throws ClippyException {
         if (arg == null || arg.trim().isEmpty()) {
             throw new ClippyException("☹ OOPS!!! The index of a task cannot be empty.");

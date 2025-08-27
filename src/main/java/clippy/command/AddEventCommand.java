@@ -10,6 +10,11 @@ import clippy.ui.Ui;
 public class AddEventCommand extends Command {
     private final String payload;
 
+    /**
+     * Constructs an AddEventCommand with the specified payload.
+     *
+     * @param payload The payload containing the event description, start time, and end time.
+     */
     public AddEventCommand(String payload) {
         this.payload = payload == null ? "" : payload.trim();
     }

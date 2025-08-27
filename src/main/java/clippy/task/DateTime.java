@@ -16,6 +16,14 @@ public class DateTime {
     private static final DateTimeFormatter DATE_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy");
 
 
+    /**
+     * Constructs a DateTime object from the given input string.
+     * The input can be in the format "YYYY-MM-DD HHMM" for date and time,
+     * or "YYYY-MM-DD" for date only.
+     *
+     * @param input The input string representing the date and time.
+     * @throws ClippyException If the input format is invalid.
+     */
     public DateTime(String input) throws ClippyException {
         try {
             this.date = LocalDate.parse(input, DATE_INPUT_FORMAT);

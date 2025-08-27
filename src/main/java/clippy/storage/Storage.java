@@ -20,11 +20,18 @@ public class Storage {
     private static final String FILE_PATH = "data/tasks.txt";
     private final Path filePath;
 
+    /**
+     * Constructs a Storage object and ensures the storage file exists.
+     */
     public Storage() {
         this.filePath = Paths.get(FILE_PATH);
         ensureFile();
     }
 
+    /**
+     * Ensures that the storage directory and file exist.
+     * If they do not exist, they are created.
+     */
     private void ensureFile() {
         try {
             Path dirPath = Paths.get(DIR);
@@ -39,6 +46,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads tasks from the storage file.
+     *
+     * @return A list of tasks loaded from the file.
+     */
     public List<Task> load() {
         List<Task> tasks = new ArrayList<>();
         try(BufferedReader reader = Files.newBufferedReader(filePath)) {
@@ -57,6 +69,13 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Parses a line from the storage file into a Task object.
+     *
+     * @param line The line to parse.
+     * @return The corresponding Task object.
+     * @throws ClippyException If there is an error in parsing the task.
+     */
     private Task parseTask(String line) throws ClippyException {
         String[] parts = line.split(" \\| ");
         String type = parts[0];
@@ -85,6 +104,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the list of tasks to the storage file.
+     *
+     * @param tasks The list of tasks to save.
+     */
     public void save(List<Task> tasks) {
         try (BufferedWriter writer = Files.newBufferedWriter(filePath)) {
             for (Task task : tasks) {
@@ -96,6 +120,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Serializes a Task object into a string for storage.
+     *
+     * @param task The task to serialize.
+     * @return The serialized string representation of the task.
+     */
     private String serializeTask(Task task) {
         String status = task.isCompleted() ? "1" : "0";
         if (task instanceof ToDoTask) {

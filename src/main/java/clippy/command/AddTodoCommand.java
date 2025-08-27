@@ -10,6 +10,11 @@ import clippy.ui.Ui;
 public class AddTodoCommand extends Command {
     private final String description;
 
+    /**
+     * Constructs an AddTodoCommand with the specified description.
+     *
+     * @param description The description of the todo task.
+     */
     public AddTodoCommand(String description) {
         this.description = description == null
                                         ? ""
