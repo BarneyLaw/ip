@@ -3,7 +3,7 @@ package clippy.ui;
 import java.util.Scanner;
 
 import clippy.task.Task;
-import clippy.task.TaskList;
+import java.util.List;
 
 public class Ui {
     private static final String horizontalLine = "____________________________________________________________________";
@@ -67,6 +67,15 @@ public class Ui {
 
     public void showLine() {
         System.out.println(horizontalLine);
+    }
+
+    public void showFound(List<Task> foundTasks) {
+        StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
+        int index = 1;
+        for (Task task : foundTasks) {
+            sb.append(index++).append(".").append(task.toString()).append("\n");
+        }
+        System.out.println(wrapWithLines(sb.toString().trim()));
     }
 
 }
