@@ -2,6 +2,9 @@ package clippy.task;
 
 import clippy.ClippyException;
 
+/**
+ * Represents a task with a deadline.
+ */
 public class DeadlineTask extends Task {
     private DateTime by;
 

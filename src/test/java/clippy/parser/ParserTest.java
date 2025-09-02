@@ -1,11 +1,14 @@
 package clippy.parser;
 
-import clippy.ClippyException;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import clippy.command.Command;
+import org.junit.jupiter.api.Test;
+
+import clippy.ClippyException;
 import clippy.command.AddTodoCommand;
+import clippy.command.Command;
 
 class ParserTest {
     @Test

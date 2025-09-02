@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +15,10 @@ import clippy.task.EventTask;
 import clippy.task.Task;
 import clippy.task.ToDoTask;
 
+/**
+ * Manages the storage of tasks to and from a file.
+ * It handles loading tasks from the file at startup and saving tasks to the file when they are modified.
+ */
 public class Storage {
     private static final String DIR = "data";
     private static final String FILE_PATH = "data/tasks.txt";
@@ -53,7 +57,7 @@ public class Storage {
      */
     public List<Task> load() {
         List<Task> tasks = new ArrayList<>();
-        try(BufferedReader reader = Files.newBufferedReader(filePath)) {
+        try (BufferedReader reader = Files.newBufferedReader(filePath)) {
             String line;
             while ((line = reader.readLine()) != null) {
                 Task task = parseTask(line);
@@ -81,26 +85,26 @@ public class Storage {
         String type = parts[0];
         boolean isDone = parts[1].equals("1");
         switch (type) {
-            case "T":
-                Task todo = new ToDoTask(parts[2]);
-                if (isDone) {
-                    todo.markAsCompleted();
-                }
-                return todo;
-            case "D":
-                Task deadline = new DeadlineTask(parts[2], parts[3]);
-                if (isDone) {
-                    deadline.markAsCompleted();
-                }
-                return deadline;
-            case "E":
-                Task event = new EventTask(parts[2], parts[3], parts[4]);
-                if (isDone) {
-                    event.markAsCompleted();
-                }
-                return event;
-            default:
-                throw new ClippyException("Unknown task type in file.");
+        case "T":
+            Task todo = new ToDoTask(parts[2]);
+            if (isDone) {
+                todo.markAsCompleted();
+            }
+            return todo;
+        case "D":
+            Task deadline = new DeadlineTask(parts[2], parts[3]);
+            if (isDone) {
+                deadline.markAsCompleted();
+            }
+            return deadline;
+        case "E":
+            Task event = new EventTask(parts[2], parts[3], parts[4]);
+            if (isDone) {
+                event.markAsCompleted();
+            }
+            return event;
+        default:
+            throw new ClippyException("Unknown task type in file.");
         }
     }
 

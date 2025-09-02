@@ -1,12 +1,13 @@
 package clippy.task;
 
-import clippy.ui.Ui;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import clippy.ClippyException;
+import clippy.ui.Ui;
 
+/**
+ * Manages a list of tasks, providing methods to add, remove, retrieve, and find tasks.
+ */
 public class TaskList {
     private final List<Task> tasks;
 
@@ -76,6 +77,12 @@ public class TaskList {
         return tasks;
     }
 
+    /**
+     * Finds and returns a list of tasks that contain the specified keyword in their description.
+     *
+     * @param keyword The keyword to search for.
+     * @return A list of tasks containing the keyword.
+     */
     public List<Task> findTasks(String keyword) {
         List<Task> result = new ArrayList<>();
         for (Task task : tasks) {

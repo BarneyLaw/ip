@@ -1,5 +1,8 @@
 package clippy.task;
 
+/**
+ * Represents a generic task.
+ */
 public class Task {
     private String description;
     private boolean isCompleted;

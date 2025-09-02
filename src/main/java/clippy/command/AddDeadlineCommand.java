@@ -7,6 +7,9 @@ import clippy.task.Task;
 import clippy.task.TaskList;
 import clippy.ui.Ui;
 
+/**
+ * Represents a command to add a deadline task to the task list.
+ */
 public class AddDeadlineCommand extends Command {
     private final String payload;
 

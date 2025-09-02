@@ -1,23 +1,26 @@
 package clippy.ui;
 
+import java.util.List;
 import java.util.Scanner;
 
 import clippy.task.Task;
-import java.util.List;
 
+/**
+ * Handles user interaction and displays messages to the user.
+ */
 public class Ui {
     private static final String horizontalLine =
             "____________________________________________________________________";
     private final Scanner scanner = new Scanner(System.in);
     private final String logo =
-    "         __                        \n" +
-    "        /  \\        _____________  \n" +
-    "        |  |       /             | \n" +
-    "        @  @       |             | \n" +
-    "        || ||      |  Hello!     | \n" +
-    "        || ||   <--|             | \n" +
-    "        |\\_/|      |             | \n" +
-    "        \\___/      \\_____________/ \n";
+            "         __                        \n"
+            + "        /  \\        _____________  \n"
+            + "        |  |       /             | \n"
+            + "        @  @       |             | \n"
+            + "        || ||      |  Hello!     | \n"
+            + "        || ||   <--|             | \n"
+            + "        |\\_/|      |             | \n"
+            + "        \\___/      \\_____________/ \n";
 
     public Ui() {
     }
@@ -26,7 +29,7 @@ public class Ui {
      * Displays the welcome message to the user.
      */
     public void welcome() {
-        String message =  "Hello from Clippy\n"
+        String message = "Hello from Clippy\n"
                 + this.logo + "\nWhat can I do for you?";
         System.out.println(wrapWithLines(message));
     }
@@ -96,14 +99,28 @@ public class Ui {
         System.out.println(wrapWithLines(message));
     }
 
+    /**
+     * Wraps the given message with horizontal lines above and below it.
+     *
+     * @param message The message to be wrapped.
+     * @return The message wrapped with horizontal lines.
+     */
     public static String wrapWithLines(String message) {
         return horizontalLine + "\n" + message + "\n" + horizontalLine;
     }
 
+    /**
+     * Displays a horizontal line to separate different sections of output.
+     */
     public void showLine() {
         System.out.println(horizontalLine);
     }
 
+    /**
+     * Displays the list of tasks that match the search keyword.
+     *
+     * @param foundTasks The list of tasks that match the search keyword.
+     */
     public void showFound(List<Task> foundTasks) {
         StringBuilder sb = new StringBuilder("Here are the matching tasks in your list:\n");
         int index = 1;
@@ -112,5 +129,4 @@ public class Ui {
         }
         System.out.println(wrapWithLines(sb.toString().trim()));
     }
-
 }

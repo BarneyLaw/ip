@@ -6,6 +6,9 @@ import clippy.task.Task;
 import clippy.task.TaskList;
 import clippy.ui.Ui;
 
+/**
+ * Represents a command to delete a task.
+ */
 public class DeleteCommand extends Command {
     private final int indexZeroBased;
 

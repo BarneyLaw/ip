@@ -1,9 +1,12 @@
 package clippy.command;
 
+import clippy.storage.Storage;
 import clippy.task.TaskList;
 import clippy.ui.Ui;
-import clippy.storage.Storage;
 
+/**
+ * Represents a command to find tasks containing a specific keyword.
+ */
 public class FindCommand extends Command {
     private final String keyword;
 
