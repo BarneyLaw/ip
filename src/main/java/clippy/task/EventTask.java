@@ -2,6 +2,9 @@ package clippy.task;
 
 import clippy.ClippyException;
 
+/**
+ * Represents a task that occurs during a specific time period.
+ */
 public class EventTask extends Task {
     private String from;
     private String to;

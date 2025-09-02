@@ -5,6 +5,9 @@ import clippy.storage.Storage;
 import clippy.task.TaskList;
 import clippy.ui.Ui;
 
+/**
+ * Represents an abstract command that can be executed.
+ */
 public abstract class Command {
     /**
      * Executes the command using the provided task list, UI, and storage.

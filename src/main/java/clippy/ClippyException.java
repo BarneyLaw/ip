@@ -1,6 +1,9 @@
 package clippy;
 
-public class ClippyException extends Exception{
+/**
+ * Represents a custom exception specific to the Clippy application.
+ */
+public class ClippyException extends Exception {
     /**
      * Constructs a new ClippyException with the specified detail message.
      *

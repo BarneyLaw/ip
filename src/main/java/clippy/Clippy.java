@@ -1,5 +1,7 @@
 package clippy;
 
+import java.util.List;
+
 import clippy.command.Command;
 import clippy.parser.Parser;
 import clippy.storage.Storage;
@@ -7,8 +9,10 @@ import clippy.task.Task;
 import clippy.task.TaskList;
 import clippy.ui.Ui;
 
-import java.util.List;
-
+/**
+ * The main class for the Clippy application, a command-line task manager.
+ * It initializes the UI, storage, and task list, and runs the main command loop.
+ */
 public class Clippy {
     private final Storage storage;
     private final TaskList tasks;

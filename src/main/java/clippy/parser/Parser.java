@@ -1,8 +1,20 @@
 package clippy.parser;
 
 import clippy.ClippyException;
-import clippy.command.*;
+import clippy.command.AddDeadlineCommand;
+import clippy.command.AddEventCommand;
+import clippy.command.AddTodoCommand;
+import clippy.command.Command;
+import clippy.command.DeleteCommand;
+import clippy.command.ExitCommand;
+import clippy.command.FindCommand;
+import clippy.command.ListCommand;
+import clippy.command.MarkCommand;
+import clippy.command.UnmarkCommand;
 
+/**
+ * Parses user input and returns the corresponding Command object.
+ */
 public class Parser {
     /**
      * Parses the user input and returns the corresponding Command object.

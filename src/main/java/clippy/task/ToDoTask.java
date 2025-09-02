@@ -2,6 +2,9 @@ package clippy.task;
 
 import clippy.ClippyException;
 
+/**
+ * Represents a todo task.
+ */
 public class ToDoTask extends Task {
 
     /**

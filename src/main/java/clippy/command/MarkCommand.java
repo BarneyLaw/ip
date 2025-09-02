@@ -6,6 +6,9 @@ import clippy.task.Task;
 import clippy.task.TaskList;
 import clippy.ui.Ui;
 
+/**
+ * Represents a command to mark a task as completed.
+ */
 public class MarkCommand extends Command {
     private final int indexZeroBased;
 

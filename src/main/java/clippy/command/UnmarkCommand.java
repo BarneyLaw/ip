@@ -6,6 +6,9 @@ import clippy.task.Task;
 import clippy.task.TaskList;
 import clippy.ui.Ui;
 
+/**
+ * Represents a command to unmark a task as completed.
+ */
 public class UnmarkCommand extends Command {
     private final int indexZeroBased;
 

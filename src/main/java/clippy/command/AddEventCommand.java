@@ -7,6 +7,10 @@ import clippy.task.Task;
 import clippy.task.TaskList;
 import clippy.ui.Ui;
 
+/**
+ * Represents a command to add an event task to the task list.
+ * The event task includes a description, a start time, and an end time.
+ */
 public class AddEventCommand extends Command {
     private final String payload;
 

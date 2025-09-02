@@ -7,6 +7,9 @@ import clippy.task.TaskList;
 import clippy.task.ToDoTask;
 import clippy.ui.Ui;
 
+/**
+ * Represents a command to add a todo task.
+ */
 public class AddTodoCommand extends Command {
     private final String description;
 
