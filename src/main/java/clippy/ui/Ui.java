@@ -2,8 +2,10 @@ package clippy.ui;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 import clippy.task.Task;
+import clippy.task.TaskList;
 
 /**
  * Handles user interaction and displays messages to the user.
@@ -13,7 +15,7 @@ public class Ui {
             "____________________________________________________________________";
     private final Scanner scanner = new Scanner(System.in);
     private final String logo =
-            "         __                        \n"
+              "         __                        \n"
             + "        /  \\        _____________  \n"
             + "        |  |       /             | \n"
             + "        @  @       |             | \n"
@@ -21,8 +23,34 @@ public class Ui {
             + "        || ||   <--|             | \n"
             + "        |\\_/|      |             | \n"
             + "        \\___/      \\_____________/ \n";
+    private Consumer<String> output;
 
     public Ui() {
+        this.output = System.out::println;
+    }
+
+    /**
+     * Constructs Ui instance with the specified output sink.
+     * If the provided sink is null, defaults to standard output.
+     *
+     * @param sink The Consumer<String> to handle output messages.
+     */
+    public Ui(Consumer<String> sink) {
+        this.output = (sink == null)
+                    ? System.out::println
+                    : sink;
+    }
+
+    /**
+     * Sets the output sink for displaying messages.
+     * If the provided sink is null, defaults to standard output.
+     *
+     * @param sink The Consumer<String> to handle output messages.
+     */
+    public void setSink(Consumer<String> sink) {
+        this.output = (sink == null)
+                    ? System.out::println
+                    : sink;
     }
 
     /**
@@ -31,7 +59,7 @@ public class Ui {
     public void welcome() {
         String message = "Hello from Clippy\n"
                 + this.logo + "\nWhat can I do for you?";
-        System.out.println(wrapWithLines(message));
+        output.accept(message);
     }
 
     /**
@@ -39,11 +67,24 @@ public class Ui {
      */
     public void goodbye() {
         String message = "Bye. Hope to see you again soon!";
-        System.out.println(wrapWithLines(message));
+        output.accept(message);
     }
 
     public String readCommand() {
         return scanner.nextLine().trim();
+    }
+
+    public void showList(TaskList tasks) {
+        StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
+        int index = 1;
+        for (Task t : tasks.getAll()) {
+            sb.append(index).append(".").append(t.toString()).append("\n");
+            index++;
+        }
+        sb.append(String.format("You have %d tasks in the list.\n", tasks.size()));
+
+        output.accept(sb.toString().trim());
+
     }
 
     /**
@@ -52,7 +93,7 @@ public class Ui {
      * @param message The error message to be displayed.
      */
     public void showError(String message) {
-        System.out.println(wrapWithLines(message));
+        output.accept(message);
     }
 
     /**
@@ -64,7 +105,7 @@ public class Ui {
     public void showAdded(Task task, int total) {
         String message = "Got it. I've added this task:\n  " + task
                 + "\nNow you have " + total + " tasks in the list.";
-        System.out.println(wrapWithLines(message));
+        output.accept(message);
     }
 
     /**
@@ -76,7 +117,7 @@ public class Ui {
     public void showDeleted(Task task, int total) {
         String message = "Noted. I've removed this task:\n" + task
                 + "\nNow you have " + total + " tasks in the list.";
-        System.out.println(wrapWithLines(message));
+        output.accept(message);
     }
 
     /**
@@ -86,7 +127,7 @@ public class Ui {
      */
     public void showMarked(Task task) {
         String message = "Nice! I've marked this task as done:\n" + task;
-        System.out.println(wrapWithLines(message));
+        output.accept(message);
     }
 
     /**
@@ -96,11 +137,12 @@ public class Ui {
      */
     public void showUnmarked(Task task) {
         String message = "OK, I've marked this task as not done yet:\n" + task;
-        System.out.println(wrapWithLines(message));
+        output.accept(message);
     }
 
     /**
      * Wraps the given message with horizontal lines above and below it.
+     * Only used in command-line interface to identify the message block.
      *
      * @param message The message to be wrapped.
      * @return The message wrapped with horizontal lines.
@@ -127,6 +169,6 @@ public class Ui {
         for (Task task : foundTasks) {
             sb.append(index++).append(".").append(task.toString()).append("\n");
         }
-        System.out.println(wrapWithLines(sb.toString().trim()));
+        output.accept(sb.toString().trim());
     }
 }

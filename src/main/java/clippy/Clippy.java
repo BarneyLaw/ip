@@ -17,6 +17,7 @@ public class Clippy {
     private final Storage storage;
     private final TaskList tasks;
     private final Ui ui;
+    private String commandType;
 
     /**
      * Constructs a Clippy application instance, initializing the UI, storage, and task list.
@@ -46,6 +47,32 @@ public class Clippy {
                 ui.showError("Unexpected error: " + e.getMessage());
             }
         }
+    }
+
+    public String getWelcome() {
+        StringBuilder sb = new StringBuilder();
+        Ui sinkUi = new Ui(s -> sb.append(s).append(System.lineSeparator()));
+        sinkUi.welcome();
+        return sb.toString().trim();
+    }
+
+    public String getResponse(String input) {
+        StringBuilder sb = new StringBuilder();
+        Ui sinkUi = new Ui(s -> sb.append(s).append(System.lineSeparator()));
+        try {
+            Command c = Parser.parse(input);
+            c.execute(tasks, sinkUi, storage);
+            commandType = c.getClass().getSimpleName();
+        } catch (ClippyException e) {
+            sinkUi.showError(e.getMessage());
+        } catch (Exception e) {
+            sinkUi.showError("Unexpected error: " + e.getMessage());
+        }
+        return sb.toString().trim();
+    }
+
+    public String getCommandType() {
+        return commandType;
     }
 
     public static void main(String[] args) {
