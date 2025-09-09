@@ -14,6 +14,7 @@ import clippy.ui.Ui;
  * It initializes the UI, storage, and task list, and runs the main command loop.
  */
 public class Clippy {
+    private static final String LS = System.lineSeparator();
     private final Storage storage;
     private final TaskList tasks;
     private final Ui ui;
@@ -38,9 +39,9 @@ public class Clippy {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
+                Command command = Parser.parse(fullCommand);
+                executeCommand(command, ui);
+                isExit = command.isExit();
             } catch (ClippyException e) {
                 ui.showError(e.getMessage());
             } catch (Exception e) {
@@ -51,18 +52,17 @@ public class Clippy {
 
     public String getWelcome() {
         StringBuilder sb = new StringBuilder();
-        Ui sinkUi = new Ui(s -> sb.append(s).append(System.lineSeparator()));
+        Ui sinkUi = new Ui(s -> sb.append(s).append(LS));
         sinkUi.welcome();
         return sb.toString().trim();
     }
 
     public String getResponse(String input) {
         StringBuilder sb = new StringBuilder();
-        Ui sinkUi = new Ui(s -> sb.append(s).append(System.lineSeparator()));
+        Ui sinkUi = new Ui(s -> sb.append(s).append(LS));
         try {
-            Command c = Parser.parse(input);
-            c.execute(tasks, sinkUi, storage);
-            commandType = c.getClass().getSimpleName();
+            Command command = Parser.parse(input);
+            executeCommand(command, sinkUi);
         } catch (ClippyException e) {
             sinkUi.showError(e.getMessage());
         } catch (Exception e) {
@@ -73,6 +73,11 @@ public class Clippy {
 
     public String getCommandType() {
         return commandType;
+    }
+
+    private void executeCommand(Command command, Ui targetUi) throws ClippyException {
+        command.execute(tasks, targetUi, storage);
+        this.commandType = command.getClass().getSimpleName();
     }
 
     public static void main(String[] args) {
