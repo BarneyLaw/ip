@@ -70,10 +70,20 @@ public class Ui {
         output.accept(message);
     }
 
+    /**
+     * Reads a command from the user input.
+     *
+     * @return The command entered by the user as a trimmed string.
+     */
     public String readCommand() {
         return scanner.nextLine().trim();
     }
 
+    /**
+     * Displays the list of tasks to the user.
+     *
+     * @param tasks The TaskList object containing all the tasks.
+     */
     public void showList(TaskList tasks) {
         StringBuilder sb = new StringBuilder("Here are the tasks in your list:\n");
         int index = 1;
@@ -81,10 +91,12 @@ public class Ui {
             sb.append(index).append(".").append(t.toString()).append("\n");
             index++;
         }
-        sb.append(String.format("You have %d tasks in the list.\n", tasks.size()));
-
+        sb.append(
+                String.format("You have %d tasks in the list.\n",
+                        tasks.size()
+                )
+        );
         output.accept(sb.toString().trim());
-
     }
 
     /**

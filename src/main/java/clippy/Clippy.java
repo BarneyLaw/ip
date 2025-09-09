@@ -71,10 +71,22 @@ public class Clippy {
         return sb.toString().trim();
     }
 
+    /**
+     * Returns the type of the last executed command.
+     *
+     * @return The command type as a string.
+     */
     public String getCommandType() {
         return commandType;
     }
 
+    /**
+     * Executes the given command using the provided UI, updating the command type.
+     *
+     * @param command  The command to execute.
+     * @param targetUi The UI to use for displaying messages.
+     * @throws ClippyException If an error occurs during command execution.
+     */
     private void executeCommand(Command command, Ui targetUi) throws ClippyException {
         command.execute(tasks, targetUi, storage);
         this.commandType = command.getClass().getSimpleName();
