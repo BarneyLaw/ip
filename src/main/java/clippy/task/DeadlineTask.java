@@ -17,10 +17,12 @@ public class DeadlineTask extends Task {
      */
     public DeadlineTask(String description, String by) throws ClippyException {
         super(validateDescription(description));
+        assert description != null && !description.trim().isEmpty() : "Description should not be null or empty";
         if (by == null || by.trim().isEmpty()) {
             throw new ClippyException("A deadline must have a set deadline(use '/by <deadline time'>).");
         }
         this.by = new DateTime(by);
+        assert this.by != null : "DateTime for deadline should not be null";
     }
 
     /**
@@ -34,6 +36,7 @@ public class DeadlineTask extends Task {
         if (description == null || description.trim().isEmpty()) {
             throw new ClippyException("A deadline task must have a description.");
         }
+        assert description != null && !description.trim().isEmpty() : "Description should not be null or empty";
         return description;
     }
 

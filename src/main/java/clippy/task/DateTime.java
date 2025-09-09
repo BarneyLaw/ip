@@ -30,6 +30,7 @@ public class DateTime {
     public DateTime(String input) throws ClippyException {
         try {
             this.date = LocalDate.parse(input, DATE_INPUT_FORMAT);
+            assert this.date != null : "Parsed LocalDate should not be null";
         } catch (DateTimeParseException e) {
             throw new ClippyException("Invalid date format. Please use YYYY-MM-DD (e.g. 2025-10-15).");
         }
