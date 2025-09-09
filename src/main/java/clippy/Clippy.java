@@ -27,6 +27,7 @@ public class Clippy {
         this.storage = new Storage();
         List<Task> loaded = storage.load();
         this.tasks = new TaskList(loaded);
+        assert this.tasks != null : "TaskList should be initialized";
     }
 
     /**
@@ -39,6 +40,7 @@ public class Clippy {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
+                assert c != null : "Parsed Command should not be null";
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (ClippyException e) {
@@ -61,6 +63,7 @@ public class Clippy {
         Ui sinkUi = new Ui(s -> sb.append(s).append(System.lineSeparator()));
         try {
             Command c = Parser.parse(input);
+            assert c != null : "Parsed Command should not be null";
             c.execute(tasks, sinkUi, storage);
             commandType = c.getClass().getSimpleName();
         } catch (ClippyException e) {

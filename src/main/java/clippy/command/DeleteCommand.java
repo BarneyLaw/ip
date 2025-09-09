@@ -19,6 +19,7 @@ public class DeleteCommand extends Command {
      */
     public DeleteCommand(int indexOneBased) {
         this.indexZeroBased = indexOneBased - 1;
+        assert indexOneBased > 0 : "Index should be 1-based and positive";
     }
 
     @Override
@@ -26,7 +27,9 @@ public class DeleteCommand extends Command {
         if (tasks.size() == 0) {
             throw new ClippyException("You have no tasks in the list to delete.");
         }
+        assert indexZeroBased >= 0 && indexZeroBased < tasks.size() : "Index out of bounds for delete";
         Task removed = tasks.remove(indexZeroBased);
+        assert removed != null : "Removed task should not be null";
         storage.save(tasks.getAll());
         ui.showDeleted(removed, tasks.size());
     }
