@@ -38,6 +38,13 @@ public class MainWindow extends AnchorPane {
         clippy = c;
     }
 
+    public void showWelcome() {
+        String welcome = clippy.getWelcome();
+        dialogContainer.getChildren().add(
+                DialogBox.getClippyDialog(welcome, clippyImage, "Welcome")
+        );
+    }
+
     /**
      * Creates two dialog boxes, one echoing user input and the other containing Duke's reply and then appends them to
      * the dialog container. Clears the user input after processing.
