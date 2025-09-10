@@ -21,6 +21,7 @@ public class AddEventCommand extends Command {
      */
     public AddEventCommand(String payload) {
         this.payload = payload == null ? "" : payload.trim();
+        assert this.payload != null : "Payload should not be null after trimming";
     }
 
     @Override
@@ -35,6 +36,7 @@ public class AddEventCommand extends Command {
             throw new ClippyException("An event must have an ending time (use '/to <time>').");
         }
         Task t = new EventTask(description, toSplit[0], toSplit[1]);
+        assert t != null : "Created EventTask should not be null";
         tasks.add(t);
         storage.save(tasks.getAll());
         ui.showAdded(t, tasks.size());
