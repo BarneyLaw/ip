@@ -11,13 +11,11 @@ import clippy.ClippyException;
  * Represents a date or date-time used in tasks.
  */
 public class DateTime {
-    private static final DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-    private static final DateTimeFormatter DATE_TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy, h:mm a");
-    private static final DateTimeFormatter DATE_INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    private static final DateTimeFormatter DATE_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy");
-    private LocalDate date;
-    private LocalDateTime dateTime;
+    private static final DateTimeFormatter INPUT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("MMM d yyyy");
 
+    private final LocalDate date;
+    private LocalDateTime dateTime; // save for future use
 
     /**
      * Constructs a DateTime object from the given input string.
@@ -29,19 +27,25 @@ public class DateTime {
      */
     public DateTime(String input) throws ClippyException {
         try {
-            this.date = LocalDate.parse(input, DATE_INPUT_FORMAT);
-            assert this.date != null : "Parsed LocalDate should not be null";
+            this.date = LocalDate.parse(input, INPUT);
         } catch (DateTimeParseException e) {
             throw new ClippyException("Invalid date format. Please use YYYY-MM-DD (e.g. 2025-10-15).");
         }
     }
 
-    @Override
-    public String toString() {
-        return date.format(DATE_OUTPUT_FORMAT);
+    /**
+     * Returns the date in a format suitable for storage.
+     *
+     * @return The formatted date string.
+     */
+    public String toStorageString() {
+        return date.format(INPUT);
     }
 
-    public String toStorageString() {
-        return date.format(DATE_INPUT_FORMAT);
+    @Override
+    public String toString() {
+        return date.format(OUTPUT);
     }
+
+
 }

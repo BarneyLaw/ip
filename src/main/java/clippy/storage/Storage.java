@@ -22,6 +22,7 @@ import clippy.task.ToDoTask;
 public class Storage {
     private static final String DIR = "data";
     private static final String FILE_PATH = "data/tasks.txt";
+
     private final Path filePath;
 
     /**
@@ -65,10 +66,8 @@ public class Storage {
                     tasks.add(task);
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException | ClippyException e) {
             System.out.println("Error loading tasks: " + e.getMessage());
-        } catch (ClippyException e) {
-            System.out.println("Error parsing tasks: " + e.getMessage());
         }
         return tasks;
     }

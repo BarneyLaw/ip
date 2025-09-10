@@ -40,6 +40,11 @@ public class DeadlineTask extends Task {
         return description;
     }
 
+    /**
+     * Gets the deadline time of the task.
+     *
+     * @return The deadline time as a DateTime object.
+     */
     public DateTime getBy() {
         return by;
     }

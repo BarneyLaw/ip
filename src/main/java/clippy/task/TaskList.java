@@ -1,6 +1,7 @@
 package clippy.task;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import clippy.ui.Ui;
@@ -69,12 +70,12 @@ public class TaskList {
     }
 
     /**
-     * returns all tasks in the task list.
+     * Returns an unmodifiable view of all tasks in the task list.
      *
      * @return A list of all tasks.
      */
     public List<Task> getAll() {
-        return tasks;
+        return Collections.unmodifiableList(tasks);
     }
 
     /**
