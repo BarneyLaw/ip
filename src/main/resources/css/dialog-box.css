@@ -1,14 +1,65 @@
-.label {
-    -fx-background-color: linear-gradient(to bottom right, #00ffbf, #00ddff);
-    -fx-border-color: #d55e00 #009e73 #cc79a7 #0072b2;
+.profile-pic {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 4, 0.2, 0, 1);
+    -fx-border-color: #4A90E2;
     -fx-border-width: 2px;
-    -fx-background-radius: 1em 1em 0 1em;
-    -fx-border-radius: 1em 1em 0 1em;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-padding: 2px;
+    -fx-background-color: white;
+    -fx-opacity: 1;
+    -fx-background-inset: 0;
+}
+
+.label {
+    -fx-background-color: "#f0e98b";
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-background-radius: 1em 1em 1em 1em;
+    -fx-border-radius: 1em 1em 1em 1em;
+    -fx-font-color: white;
+}
+
+.dialog-box {
+    -fx-padding: 8 12 8 12;
+    -fx-background-radius: 16;
+    -fx-max-width: 400px;
+    -fx-spacing: 8;
+}
+
+.user-label {
+    -fx-background-color: "#bbdbed";
+    -fx-text-fill: #222;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-padding: 10 16 10 16;
+    -fx-background-radius: 16 16 16 16;
+    -fx-alignment: CENTER_RIGHT;
+}
+
+.bot-label {
+    -fx-background-color: #083061;
+    -fx-text-fill: #222;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+    -fx-font-size: 15px;
+    -fx-padding: 10 16 10 16;
+    -fx-background-radius: 16 16 16 16;
+    -fx-alignment: CENTER_LEFT;
+}
+
+.error-label {
+    -fx-background-color: #f29999;
+    -fx-text-fill: #b00020;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 10 16 10 16;
+    -fx-background-radius: 16;
+    -fx-border-color: #b00020;
+    -fx-border-width: 2px;
 }
 
 .reply-label {
-    -fx-background-radius: 1em 1em 1em 0;
-    -fx-border-radius: 1em 1em 1em 0;
+    -fx-background-radius: 1em 1em 1em 1em;
+    -fx-border-radius: 1em 1em 1em 1em;
 }
 
 #displayPicture {
