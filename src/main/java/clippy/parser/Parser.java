@@ -8,6 +8,7 @@ import clippy.command.Command;
 import clippy.command.DeleteCommand;
 import clippy.command.ExitCommand;
 import clippy.command.FindCommand;
+import clippy.command.HelpCommand;
 import clippy.command.ListCommand;
 import clippy.command.MarkCommand;
 import clippy.command.UnmarkCommand;
@@ -50,6 +51,8 @@ public class Parser {
             return new DeleteCommand(parseIndex(arg));
         case "find":
             return new FindCommand(arg);
+        case "help":
+            return new HelpCommand();
         default:
             throw new ClippyException("Sorry, I don't understand that command.");
         }

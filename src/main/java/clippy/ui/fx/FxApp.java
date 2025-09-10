@@ -24,6 +24,7 @@ public class FxApp extends Application {
             stage.setTitle("Clippy");
             stage.setScene(scene);
             fxmlLoader.<MainWindow>getController().setClippy(clippy);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().showWelcome();
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -57,8 +57,7 @@ public class Ui {
      * Displays the welcome message to the user.
      */
     public void welcome() {
-        String message = "Hello from Clippy\n"
-                + this.logo + "\nWhat can I do for you?";
+        String message = "Hello from Clippy, what can I do for you?" + "\ntype 'help' to see available commands";
         output.accept(message);
     }
 
@@ -168,6 +167,25 @@ public class Ui {
      */
     public void showLine() {
         System.out.println(horizontalLine);
+    }
+
+
+    /**
+     * Displays the help message with a list of available commands.
+     */
+    public void showHelp() {
+        String helpMessage = "Here are the available commands:\n"
+                + "1. list - Displays all tasks in the list.\n"
+                + "2. todo <description> - Adds a new todo task with the given description.\n"
+                + "3. deadline <description> /by <date> - Adds a new deadline task with the given description and date.\n"
+                + "4. event <description> /at <date> - Adds a new event task with the given description and date.\n"
+                + "5. mark <task number> - Marks the specified task as done.\n"
+                + "6. unmark <task number> - Marks the specified task as not done.\n"
+                + "7. delete <task number> - Deletes the specified task from the list.\n"
+                + "8. find <keyword> - Finds and displays tasks containing the specified keyword.\n"
+                + "9. help - Displays this help message.\n"
+                + "10. bye - Exits the application.";
+        output.accept(helpMessage);
     }
 
     /**

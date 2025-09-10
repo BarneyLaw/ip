@@ -8,6 +8,13 @@
     -fx-background-color: white;
     -fx-opacity: 1;
     -fx-background-inset: 0;
+
+    -fx-pref-width: 65px;
+    -fx-pref-height: 65px;
+    -fx-min-width: 65px;
+    -fx-min-height: 65px;
+    -fx-max-width: 65px;
+    -fx-max-height: 65px;
 }
 
 .label {
