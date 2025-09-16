@@ -1,5 +1,6 @@
 package clippy.ui.fx;
 
+import clippy.Clippy;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -7,8 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-
-import clippy.Clippy;
 
 /**
  * Controller for the main GUI.
@@ -38,6 +37,7 @@ public class MainWindow extends AnchorPane {
         clippy = c;
     }
 
+    /** Displays the welcome message. */
     public void showWelcome() {
         String welcome = clippy.getWelcome();
         dialogContainer.getChildren().add(

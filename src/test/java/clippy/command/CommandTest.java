@@ -1,18 +1,20 @@
 package clippy.command;
 
-import clippy.ClippyException;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.io.File;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import clippy.storage.Storage;
 import clippy.task.Task;
 import clippy.task.TaskList;
 import clippy.ui.Ui;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * Test class for Command and its subclasses.
@@ -20,19 +22,29 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
  * The tests ensure that each command executes without throwing exceptions
  */
 public class CommandTest {
+    private static final String filePath = "test_tasks.txt";
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
     @BeforeEach
     void setUp() {
-        storage = new Storage();
+        storage = new Storage(filePath); // temporary file for testing
         tasks = new TaskList();
         ui = new Ui();
     }
 
+    @AfterAll
+    static void tearDown() {
+        // Clean up test storage file if necessary
+        File file = new File(filePath);
+        if (file.exists()) {
+            file.delete();
+        }
+    }
+
     @Test
-    void AddDeadlineCommand_executesWithoutError() {
+    void addDeadlineCommandExecutesWithoutError() {
         Command addDeadlineCommand = new AddDeadlineCommand("submit report /by 2024-12-01");
         assertDoesNotThrow(() -> addDeadlineCommand.execute(tasks, ui, storage));
         assertEquals(1, tasks.size());
@@ -40,7 +52,7 @@ public class CommandTest {
     }
 
     @Test
-    void AddToDoCommand_executesWithoutError() {
+    void addToDoCommandExecutesWithoutError() {
         Command addToDoCommand = new AddTodoCommand("read book");
         assertDoesNotThrow(() -> addToDoCommand.execute(tasks, ui, storage));
         assertEquals(1, tasks.size());
@@ -48,15 +60,15 @@ public class CommandTest {
     }
 
     @Test
-    void AddEventCommand_executesWithoutError() {
+    void addEventCommandExecutesWithoutError() {
         Command addEventCommand = new AddEventCommand("project /from 2024-11-15 /to 2024-11-16");
         assertDoesNotThrow(() -> addEventCommand.execute(tasks, ui, storage));
         assertEquals(1, tasks.size());
-        assertEquals("[E] [ ] project (from: 2024-11-15 to: 2024-11-16)", tasks.get(0).toString());
+        assertEquals("[E] [ ] project (from: Nov 15 2024 to: Nov 16 2024)", tasks.get(0).toString());
     }
 
     @Test
-    void DeleteCommand_executesWithoutError() throws ClippyException {
+    void deleteCommandExecutesWithoutError() {
         tasks.add(new Task("read book"));
         Command deleteCommand = new DeleteCommand(1);
         assertDoesNotThrow(() -> deleteCommand.execute(tasks, ui, storage));
@@ -64,14 +76,14 @@ public class CommandTest {
     }
 
     @Test
-    void ListCommand_executesWithoutError() throws ClippyException {
+    void listCommandExecutesWithoutError() {
         tasks.add(new Task("read book"));
         Command listCommand = new ListCommand();
         assertDoesNotThrow(() -> listCommand.execute(tasks, ui, storage));
     }
 
     @Test
-    void MarkCommand_executesWithoutError() throws ClippyException {
+    void markCommandExecutesWithoutError() {
         tasks.add(new Task("read book"));
         Command markCommand = new MarkCommand(1);
         assertDoesNotThrow(() -> markCommand.execute(tasks, ui, storage));
@@ -79,7 +91,7 @@ public class CommandTest {
     }
 
     @Test
-    void UnmarkCommand_executesWithoutError() throws ClippyException {
+    void unmarkCommandExecutesWithoutError() {
         Task task = new Task("read book");
         task.markAsCompleted();
         tasks.add(task);
@@ -89,13 +101,13 @@ public class CommandTest {
     }
 
     @Test
-    void helpCommand_executesWithoutError() {
+    void helpCommandExecutesWithoutError() {
         Command helpCommand = new HelpCommand();
         assertDoesNotThrow(() -> helpCommand.execute(tasks, ui, storage));
     }
 
     @Test
-    void findCommand_executesWithoutError() throws ClippyException {
+    void findCommandExecutesWithoutError() {
         tasks.add(new Task("read book"));
         tasks.add(new Task("write code"));
         Command findCommand = new FindCommand("read");
@@ -103,24 +115,24 @@ public class CommandTest {
     }
 
     @Test
-    void isExit_returnsCorrectValue() {
-        Command AddDeadlineCommand = new AddDeadlineCommand("submit report /by 2024-12-01");
-        Command AddToDoCommand = new AddTodoCommand("read book");
-        Command AddEventCommand = new AddEventCommand("team meeting /at 2024-11-15");
-        Command DeleteCommand = new DeleteCommand(1);
-        Command ListCommand = new ListCommand();
-        Command MarkCommand = new MarkCommand(1);
-        Command UnmarkCommand = new UnmarkCommand(1);
+    void isExitReturnsCorrectValue() {
+        Command addDeadlineCommand = new AddDeadlineCommand("submit report /by 2024-12-01");
+        Command addToDoCommand = new AddTodoCommand("read book");
+        Command addEventCommand = new AddEventCommand("team meeting /at 2024-11-15");
+        Command deleteCommand = new DeleteCommand(1);
+        Command listCommand = new ListCommand();
+        Command markCommand = new MarkCommand(1);
+        Command unmarkCommand = new UnmarkCommand(1);
         Command helpCommand = new HelpCommand();
         Command findCommand = new FindCommand("read");
 
-        assertFalse(AddDeadlineCommand.isExit());
-        assertFalse(AddToDoCommand.isExit());
-        assertFalse(AddEventCommand.isExit());
-        assertFalse(DeleteCommand.isExit());
-        assertFalse(ListCommand.isExit());
-        assertFalse(MarkCommand.isExit());
-        assertFalse(UnmarkCommand.isExit());
+        assertFalse(addDeadlineCommand.isExit());
+        assertFalse(addToDoCommand.isExit());
+        assertFalse(addEventCommand.isExit());
+        assertFalse(deleteCommand.isExit());
+        assertFalse(listCommand.isExit());
+        assertFalse(markCommand.isExit());
+        assertFalse(unmarkCommand.isExit());
         assertFalse(helpCommand.isExit());
         assertFalse(findCommand.isExit());
     }

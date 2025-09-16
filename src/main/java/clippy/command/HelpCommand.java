@@ -4,9 +4,14 @@ import clippy.storage.Storage;
 import clippy.task.TaskList;
 import clippy.ui.Ui;
 
-
+/**
+ * Represents a command to display help information about available commands.
+ */
 public class HelpCommand extends Command {
 
+    /**
+     * Constructs a HelpCommand.
+     */
     public HelpCommand() {
     }
 

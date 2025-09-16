@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -15,12 +14,22 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 
+/**
+ * This control represents a dialog box consisting of an ImageView to represent the speaker's face and a label
+ * containing text from the speaker.
+ * Note: The root node of this control must be set to an HBox.
+ */
 public class DialogBox extends HBox {
     @FXML
     private Label dialog;
     @FXML
     private ImageView displayPicture;
 
+    /**
+     * Creates a dialog box with the specified text and image.
+     * @param text The text to be displayed.
+     * @param img The image to be displayed.
+     */
     public DialogBox(String text, Image img) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(MainWindow.class.getResource("/view/DialogBox.fxml"));
@@ -39,6 +48,9 @@ public class DialogBox extends HBox {
         displayPicture.getStyleClass().add("profile-pic");
     }
 
+    /**
+     * Flips the dialog box such that the ImageView is on the left and text on the right.
+     */
     private void flip() {
         ObservableList<Node> tmp = FXCollections.observableArrayList(this.getChildren());
         Collections.reverse(tmp);
@@ -47,6 +59,12 @@ public class DialogBox extends HBox {
         dialog.getStyleClass().add("reply-label");
     }
 
+    /**
+     * Creates a dialog box for the user.
+     * @param text The text to be displayed.
+     * @param img The image to be displayed.
+     * @return A dialog box for the user.
+     */
     public static DialogBox getUserDialog(String text, Image img) {
         DialogBox db = new DialogBox(text, img);
         db.dialog.getStyleClass().add("user-label");
@@ -55,6 +73,13 @@ public class DialogBox extends HBox {
         return db;
     }
 
+    /**
+     * Creates a dialog box for Clippy.
+     * @param text The text to be displayed.
+     * @param img The image to be displayed.
+     * @param commandType The type of command that was executed.
+     * @return A dialog box for Clippy.
+     */
     public static DialogBox getClippyDialog(String text, Image img, String commandType) {
         DialogBox db = new DialogBox(text, img);
         db.setAlignment(Pos.TOP_LEFT);
@@ -67,6 +92,10 @@ public class DialogBox extends HBox {
         return db;
     }
 
+    /**
+     * Changes the style of the dialog box based on the command type.
+     * @param commandType The type of command that was executed.
+     */
     private void changeDialogStyle(String commandType) {
         if (commandType == null) {
             return; // Do nothing if commandType is null

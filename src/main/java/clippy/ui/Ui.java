@@ -33,7 +33,7 @@ public class Ui {
      * Constructs Ui instance with the specified output sink.
      * If the provided sink is null, defaults to standard output.
      *
-     * @param sink The Consumer<String> to handle output messages.
+     * @param sink The Consumer{@code String} to handle output messages.
      */
     public Ui(Consumer<String> sink) {
         this.output = (sink == null)
@@ -45,7 +45,7 @@ public class Ui {
      * Sets the output sink for displaying messages.
      * If the provided sink is null, defaults to standard output.
      *
-     * @param sink The Consumer<String> to handle output messages.
+     * @param sink The Consumer{@code String} to handle output messages.
      */
     public void setSink(Consumer<String> sink) {
         this.output = (sink == null)
@@ -177,7 +177,8 @@ public class Ui {
         String helpMessage = "Here are the available commands:\n"
                 + "1. list - Displays all tasks in the list.\n"
                 + "2. todo <description> - Adds a new todo task with the given description.\n"
-                + "3. deadline <description> /by <date> - Adds a new deadline task with the given description and date.\n"
+                + "3. deadline <description> /by <date> - "
+                + "Adds a new deadline task with the given description and date.\n"
                 + "4. event <description> /at <date> - Adds a new event task with the given description and date.\n"
                 + "5. mark <task number> - Marks the specified task as done.\n"
                 + "6. unmark <task number> - Marks the specified task as not done.\n"

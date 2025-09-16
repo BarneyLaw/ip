@@ -6,8 +6,8 @@ import clippy.ClippyException;
  * Represents a task that occurs during a specific time period.
  */
 public class EventTask extends Task {
-    private String from;
-    private String to;
+    private DateTime from;
+    private DateTime to;
 
     /**
      * Constructs an EventTask with the given description, start time, and end time.
@@ -25,8 +25,8 @@ public class EventTask extends Task {
         if (to == null || to.trim().isEmpty()) {
             throw new ClippyException("An event must have an ending time(use /to <time>).");
         }
-        this.from = from;
-        this.to = to;
+        this.from = new DateTime(from);
+        this.to = new DateTime(to);
     }
 
     /**
@@ -43,11 +43,11 @@ public class EventTask extends Task {
         return description;
     }
 
-    public String getFrom() {
+    public DateTime getFrom() {
         return this.from;
     }
 
-    public String getTo() {
+    public DateTime getTo() {
         return this.to;
     }
 

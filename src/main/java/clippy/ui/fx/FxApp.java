@@ -1,8 +1,8 @@
 package clippy.ui.fx;
 
-import clippy.Clippy;
 import java.io.IOException;
 
+import clippy.Clippy;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,7 +23,7 @@ public class FxApp extends Application {
             Scene scene = new Scene(ap);
             stage.setTitle("Clippy");
             stage.setScene(scene);
-            fxmlLoader.<MainWindow>getController().setClippy(clippy);  // inject the Duke instance
+            fxmlLoader.<MainWindow>getController().setClippy(clippy); // inject the Duke instance
             fxmlLoader.<MainWindow>getController().showWelcome();
             stage.show();
         } catch (IOException e) {
