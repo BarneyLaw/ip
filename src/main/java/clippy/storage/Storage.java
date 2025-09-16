@@ -34,6 +34,17 @@ public class Storage {
     }
 
     /**
+     * Constructs a Storage object with a custom file path and ensures the storage file exists.
+     * For testing purposes only ******
+     *
+     * @param filePath The custom file path for storing tasks.
+     */
+    public Storage(String filePath) {
+        this.filePath = Paths.get(filePath);
+        ensureFile();
+    }
+
+    /**
      * Ensures that the storage directory and file exist.
      * If they do not exist, they are created.
      */

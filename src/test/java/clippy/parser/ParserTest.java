@@ -1,14 +1,14 @@
 package clippy.parser;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-
 import org.junit.jupiter.api.Test;
 
 import clippy.ClippyException;
 import clippy.command.AddTodoCommand;
 import clippy.command.Command;
+
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class ParserTest {
     @Test
@@ -16,7 +16,7 @@ class ParserTest {
         String input = "todo read book";
         try {
             Command command = Parser.parse(input);
-            assertTrue(command instanceof AddTodoCommand);
+            assertInstanceOf(AddTodoCommand.class, command);
         } catch (ClippyException e) {
             fail("Parsing failed with exception: " + e.getMessage());
         }
