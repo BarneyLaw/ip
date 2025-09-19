@@ -179,13 +179,14 @@ public class Ui {
                 + "2. todo <description> - Adds a new todo task with the given description.\n"
                 + "3. deadline <description> /by <date> - "
                 + "Adds a new deadline task with the given description and date.\n"
-                + "4. event <description> /at <date> - Adds a new event task with the given description and date.\n"
+                + "4. event <description> /from <date> /to <date> - Adds a new event task with the given description and date.\n"
                 + "5. mark <task number> - Marks the specified task as done.\n"
                 + "6. unmark <task number> - Marks the specified task as not done.\n"
                 + "7. delete <task number> - Deletes the specified task from the list.\n"
                 + "8. find <keyword> - Finds and displays tasks containing the specified keyword.\n"
                 + "9. help - Displays this help message.\n"
-                + "10. bye - Exits the application.";
+                + "10. bye - Exits the application.\n"
+                + "Note: Dates should be in the format YYYY-MM-DD.";
         output.accept(helpMessage);
     }
 
